@@ -8,5 +8,5 @@ DIR - do the same thing as DIR in CMD.exe. But you can not use additional parame
 CD - do the same thing as CD in CMD.exe.  But you can not use additional parameters except the PATH.  
 
 ### Adding your own command
-Create      <strong>CMD/Commands/Thecommand.java</strong>  (just 1 character is capital)
+Create      <strong>CMD/Commands/Thecommand.java</strong> (just 1 character is capital)   
 Implement   <strong>CMD/Interfaces/Helpable.java, CMD/Interfaces/Runnable.java</strong>
