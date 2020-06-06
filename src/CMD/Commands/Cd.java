@@ -32,10 +32,6 @@ public class Cd implements Runnable, Helpable {
     }
 
     private Path rePath(Path path) {
-        if (path.toString().charAt(0) == '\\') {
-            return (path.toAbsolutePath().normalize());
-        }
-        else
-            return (Paths.get(Main.workingDir.toString() + "\\" + path.toString()).toAbsolutePath().normalize());
+        return (Main.workingDir.resolve(path).toAbsolutePath().normalize());
     }
 }

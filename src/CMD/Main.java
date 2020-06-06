@@ -27,12 +27,12 @@ public class Main {
                 }
                 String command = commandLine.substring(0, i).toLowerCase();
                 command = command.substring(0, 1).toUpperCase() + command.substring(1, i);
-                String parameters = "";
+                String parameters;
                 try {
                     parameters = commandLine.substring(i + 1, commandLine.length());
                 }
                 catch (Exception e) {
-
+                    parameters = "";
                 }
                 try {
                     Class commandClass = Class.forName("CMD.Commands." + command);
@@ -64,10 +64,12 @@ public class Main {
                         List<Class<?>> classes = Finder.find("CMD.Commands");
                         for (Class<?> commandClass:classes) {
                             commandClass = Class.forName(commandClass.toString().substring(6, commandClass.toString().length()));
-                            Constructor construct = commandClass.getConstructor();
-                            Object obj = construct.newInstance();
-                            Helpable mobj = (Helpable) obj;
-                            mobj.help();
+                            if (!commandClass.toString().contains("$")) {
+                                Constructor construct = commandClass.getConstructor();
+                                Object obj = construct.newInstance();
+                                Helpable mobj = (Helpable) obj;
+                                mobj.help();
+                            }
                         }
                     } catch (NoSuchMethodException ex) {
                         ex.printStackTrace();

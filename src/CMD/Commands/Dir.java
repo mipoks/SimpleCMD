@@ -23,7 +23,7 @@ public class Dir implements Runnable, Helpable {
 
     public void help() {
         System.out.printf("%-10s %-10s", "DIR", "PathToDir");
-        System.out.printf("%15s%15s\n", "Example:", "DIR \\Users\\pc");
+        System.out.printf("%15s%19s\n", "Example:", "DIR \\Users\\pc");
     }
 
     private void printFiles(Path paramPath) {
@@ -52,10 +52,6 @@ public class Dir implements Runnable, Helpable {
         }
     }
     private Path rePath(Path path) {
-        if (path.toString().charAt(0) == '\\') {
-            return (path.toAbsolutePath().normalize());
-        }
-        else
-            return (Paths.get(Main.workingDir.toString() + "\\" + path.toString()).toAbsolutePath().normalize());
+        return (Main.workingDir.resolve(path).toAbsolutePath().normalize());
     }
 }
